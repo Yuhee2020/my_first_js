@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Моя первая страница</title>
+
+</head>
+
+<body>
+    <h1>Привет, мир!</h1>
+    <p>Моя <em>первая</em> <strong>веб-страничка</strong>.</p>
+    <p>Добавим-ка еще<strong> <em>параграф</em></strong>.</p>
+    <p><a href="http://comicsia.ru/collections/xkcd">Нажмите
+            сюда</a>, чтобы почитать отличные комиксы.</p>
+    <script>
+        var alphabet = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя";
+        var randomstring = "";
+        while (randomstring.length < 8) { randomstring += alphabet[Math.floor(Math.random() * alphabet.length)] };
+        console.log(randomstring)
+    </script>
+</body>
+
+</html>
