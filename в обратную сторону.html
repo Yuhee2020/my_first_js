@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Моя первая страница</title>
+
+</head>
+
+<body>
+    <h1>открой консоль</h1>
+    <p>Моя <em>первая</em> <strong>случайные слова</strong>.</p>
+    <p>Открой<strong> <em>консоль</em></strong>.</p>
+    <p><a href="http://comicsia.ru/collections/xkcd">Нажмите
+            сюда</a>, чтобы почитать отличные комиксы.</p>
+    <script>
+        var input = "j4v4scr1pt 1s 4w3s0m3"
+        var output = ""
+        for (i = 0; i < input.length; i++) {
+            if (input[i] === "4") { output += "a" }
+            else if (input[i] === "1") { output += "i" }
+            else if (input[i] === "3") { output += "e" }
+            else if (input[i] === "0") { output += "o" }
+            else { output += input[i] }
+        }
+        console.log(output)
+    </script>
+</body>
+
+</html>
