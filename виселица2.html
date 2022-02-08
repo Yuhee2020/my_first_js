@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Виселица</title>
+</head>
+
+<body>
+    <h1>Виселица</h1>
+    <script>
+        var words = ["жопа", "макака", "какаха", "голова", "кровать", "квартира", "ванна", "рот", "цветок", "носок", "мышка"];
+        var word = words[Math.floor(Math.random() * words.length)];
+
+        var answerArray = [];
+        for (i = 0; i < word.length; i++) {
+            answerArray[i] = "_"
+        }
+        var remainingLetters = word.length;
+        var p = 10
+
+        while ((remainingLetters > 0) && (p > 0)) {
+            alert(answerArray.join(" "));
+
+            var guess = prompt("Угадайте букву или нажмите Отмена для выхода из игры, осталось " + p + " попыток");
+
+            guess = guess.toLowerCase()
+            if (guess === null) {
+                break
+            } else if (guess.length !== 1) {
+                alert("Пожалуйста введите одиночную букву")
+
+            } else {
+                p--;
+
+                if (p === 0) {
+
+                    alert("Попытки израсходованы, вы проиграли, загаданное слово " + word)
+                    break
+                }
+
+                for (var j = 0; j < word.length; j++) {
+                    if (word[j] === guess && answerArray[j]==="_") {
+                        answerArray[j] = guess;
+                        remainingLetters--;
+
+                    }
+                }
+            }
+        }
+        if (remainingLetters < 1) {
+            alert(answerArray.join(" "));
+            alert("Отлично, было загадано слово " + word)
+        }
+    </script>
+</body>
+
+</html>
