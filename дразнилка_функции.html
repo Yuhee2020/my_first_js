@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Моя первая страница</title>
+
+</head>
+
+<body>
+    <h1>Дразнилка</h1>
+    <p>Моя <em>первая</em> <strong>дразнилка</strong>.</p>
+    <p>Открой<strong> <em>консоль</em></strong>.</p>
+
+    <script>
+        var PRW = function (word) {
+            return word[Math.floor(Math.random() * word.length)]
+        }
+        var randomBodyParts = ["писюн", "писька", "рот", "жопа"];
+        var randomAdjectives = ["страшная", "грязная", "жирная", "тощая"];
+        var randomWords = ["дырка", "палка", "чайка", "задница", "крыса"];
+        console.log("У тебя " + PRW(randomBodyParts) +
+            " словно " + PRW(randomAdjectives) + " " + PRW(randomWords))
+
+    </script>
+</body>
+
+</html>
