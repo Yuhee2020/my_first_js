@@ -11,12 +11,10 @@
     <h1 id="one">Такие мои хобби</h1>
     <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
     <script>
-
-        for (var i = 0; i < 3; i++) {
-            var hobby = prompt("Назови свое хобби");
-            $("body").append("<h2>" + hobby + "<h2>")
+        for(i=0;i<5; i++){
+        $("h1").slideDown(1000);
+        $("h1").slideUp(1000);
         }
-        $("h1").text("Этот текст скоро исчезнет").slide.Up(3000).slide.Down(2000)
     </script>
 </body>
 
