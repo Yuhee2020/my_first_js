@@ -11,10 +11,19 @@
     <h1 id="one">Такие мои хобби</h1>
     <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
     <script>
-        for(i=0;i<5; i++){
-        $("h1").slideDown(1000);
-        $("h1").slideUp(1000);
+        var friends = ["Леха", "Саня", "Женя", "Иваныч"];
+        for (i = 0; i < friends.length; i++) {
+        $("body").append("<p>" + friends[i] + "</p>")
+        $("p").last().hide().fadeIn((i + 1) * 2000);
+    }
+
+        $("#one").text("Мои друзья")
+        for(x=0; x<5;x++){
+            $("#one").fadeOut((x+1)*1000).fadeIn((x+1)*1000)    
         }
+
+        $("p").append( " лучший!")
+
     </script>
 </body>
 
