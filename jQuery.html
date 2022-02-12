@@ -9,21 +9,22 @@
 
 <body>
     <h1 id="one">Такие мои хобби</h1>
+    <h2 id="two">Такие мудаки</h2>
     <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
     <script>
         var friends = ["Леха", "Саня", "Женя", "Иваныч"];
         for (i = 0; i < friends.length; i++) {
-        $("body").append("<p>" + friends[i] + "</p>")
-        $("p").last().hide().fadeIn((i + 1) * 2000);
-    }
-
-        $("#one").text("Мои друзья")
-        for(x=0; x<5;x++){
-            $("#one").fadeOut((x+1)*1000).fadeIn((x+1)*1000)    
+            $("body").append("<p>" + friends[i] + "</p>")
+            $("p").last().hide().fadeIn((i + 1) * 2000);
         }
 
-        $("p").append( " лучший!")
+        $("#one").text("Мои друзья")
+        for (x = 0; x < 5; x++) {
+            $("#one").fadeOut((x + 1) * 1000).fadeIn((x + 1) * 1000)
+        }
 
+        $("p").append(" лучший!")
+        $("#two").fadeOut(3000).delay(5000).fadeIn(3000)
     </script>
 </body>
 
