@@ -27,6 +27,22 @@
         $("p").append(" лучший!")
         $("#two").fadeOut(3000).delay(5000).fadeIn(3000)
         $("h3").fadeTo(2000, 0.6)
+
+        var timeUp = function () {
+            alert("Время вышло")
+        }
+        setTimeout(timeUp, 8000)
+
+        var counter = 5
+        var printMessage = function () {
+            console.log ("ты смотришь  в окно уже " + counter + " сек");
+            counter+=5;
+        }
+        var intervalId = setInterval(printMessage, 5000)
+        var stopik = function(){
+            clearInterval(intervalId)
+        }
+        setTimeout(stopik, 100000);
     </script>
 </body>
 
