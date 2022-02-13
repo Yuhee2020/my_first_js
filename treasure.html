@@ -4,12 +4,25 @@
 <head>
     <meta charset="UTF-8">
     <title>Найти клад</title>
+    <style>
+        p {
+            font-size: 25px;
+            font-weight: bolder;
+            color: rgb(74, 14, 133);
+            margin: 0px 100px;
+        }
+
+        body {
+            background-color: rgb(134, 221, 134);
+        }
+    </style>
 </head>
 
 <body>
     <h1 id="heading">Найди клад!</h1>
-    <img id="map" width="400" height="400" src="http://nostarch.com/images/treasuremap.png">
     <p id="distance"></p>
+    <img id="map" width="600" height="600" src="http://nostarch.com/images/treasuremap.png">
+
     <script src="https://code.jquery.com/jquery-2.1.0.js"> </script>
     <script>
         // Получить случайное число от 0 до size-1
@@ -25,19 +38,21 @@
         // Получить для расстояния строку подсказки
         var getDistanceHint = function (distance) {
             if (distance < 10) {
-                return "Обожжешься!";
+                return "Обожжешься! Осталось " + (popit - clicks) + " попыток";
             } else if (distance < 20) {
-                return "Очень горячо!"
+                return "Очень горячо! Осталось " + (popit - clicks) + " попыток"
             } else if (distance < 40) {
-                return "Горячо"
+                return "Горячо. Осталось " + (popit - clicks) + " попыток"
             } else if (distance < 80) {
-                return "Тепло"
+                return "Тепло. Осталось " + (popit - clicks) + " попыток"
             } else if (distance < 160) {
-                return "Холодно"
+                return "Холодно. Осталось " + (popit - clicks) + " попыток"
             } else if (distance < 320) {
-                return "Очень холодно"
+                return "Очень холодно. Осталось " + (popit - clicks) + " попыток"
+            } else if (distance < 400) {
+                return "Вообще холодина! Осталось " + (popit - clicks) + " попыток"
             } else {
-                return "Замерзнешь!"
+                return "Замерзнешь! Осталось " + (popit - clicks) + " попыток"
             }
         }
 
@@ -45,8 +60,9 @@
         // Создаем переменные
 
         var clicks = 0
-        var width = 400;
-        var height = 400;
+        var width = 600;
+        var height = 600;
+        var popit = 30;
         // Случайная позиция клада
         var target = {
             x: getRandomNumber(width),
@@ -55,6 +71,11 @@
         // Добавляем элементу img обработчик клика
         $("#map").click(function (event) {
             clicks++
+
+            if (clicks >= popit) {
+                alert("КОНЕЦ ИГРЫ")
+                return;
+            }
 
             // Получаем расстояние от места клика до клада
             var distance = getDistance(event, target);
@@ -65,7 +86,9 @@
             // Если клик был достаточно близко, поздравляем с победой
             if (distance < 8) {
                 alert("Клад найден! Сделано кликов " + clicks);
+                
             }
+
         })
 
     </script>
