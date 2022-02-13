@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Интерактивное программирование</title>
+    <style>
+        h1 {
+            font-size: 40px;
+            color:red;
+            
+        } 
+    </style>
+</head>
+
+<body>
+    <h1 id="heading">Начало игры</h1>
+    <script src="https://code.jquery.com/jquery-2.1.0.js"> </script>
+    <script>
+        var offset = 0;
+        var direction = "вправо"
+        var per = 500
+
+        var moveHeading = function () {
+            if (direction === "вправо") {
+                $("#heading").offset({ left: offset });
+                offset++;
+                if (offset > per) {
+                    offset = 0;
+                    direction = "вниз"
+                }
+            } else if (direction === "вниз") {
+                $("#heading").offset({ top: offset });
+                offset++;
+                if (offset > per) {
+                    offset = per;
+                    direction = "влево";
+                }
+            } else if (direction === "влево") {
+                $("#heading").offset({ left: offset })
+                offset--;
+                if (offset < 0) {
+                    offset = per;
+                    direction = "вверх";
+                }
+            } else if (direction === "вверх") {
+                $("#heading").offset({ top: offset });
+                offset--;
+                if (offset < 0) {
+                    offset = 0;
+                    direction = "вправо"
+                }
+            }
+        }
+        var speed = 200
+        var clicks = 0
+        var intervalID = setInterval(moveHeading, speed);
+
+        $("#heading").click(function (event) {
+            clearInterval(intervalID);
+            speed /=2;
+            clicks++;
+            $("#heading").text(clicks);
+
+            if (clicks > 10) {
+                $("#heading").text("Победа!");
+            } else {
+                intervalID = setInterval(moveHeading, speed)
+            }
+        }
+        )
+
+
+
+
+    </script>
+</body>
+
+</html>
