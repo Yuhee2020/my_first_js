@@ -3,26 +3,43 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Интерактивное программирование</title>
+    <title>ООП</title>
 </head>
 
 <body>
-    <h1 id="heading">Привет, мир!</h1>
+    <h1 id="heading">Объекты</h1>
     <script src="https://code.jquery.com/jquery-2.1.0.js"> </script>
     <script>
-        var clickHandler = function (event){
-            console.log ("Клик! "+ event.pageX + " " + event.pageY);
-        }
-        $("html").click(clickHandler);
+        var dog = {
+            name: "Оладушек",
+            legs: 4,
+            isAwesome: true
+        };
 
-        $("html").click(function (event){
-               $("#heading").offset({
-                left: event.pageX,
-                top: event.pageY
-            })
-        
-        })
-        </script>
+        var speak = function () {
+            console.log(this.sound + "! Меня зовут " + this.name + "!")
+        }
+
+        var cat = {
+            sound: "Мяу",
+            name: "Варежка",
+            speak: speak
+        }
+        console.log(cat.speak())
+
+        var pig = {
+            sound: "Хрю",
+            name: "Чарли",
+            speak: speak
+        };
+        console.log(pig.speak())
+        var horse = {
+            sound: "И го го ",
+            name: "Мэри",
+            speak: speak
+        }
+        console.log(horse.speak())
+    </script>
 </body>
 
 </html>
