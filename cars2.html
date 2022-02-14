@@ -14,6 +14,8 @@
             this.x = x;
             this.y = y;
             this.draw()
+          
+            
         };
 
         Car.prototype.draw = function () {
@@ -24,33 +26,34 @@
                 position: "absolute",
                 left: this.x,
                 top: this.y
+
             });
             $("body").append(this.carElement);
         };
-        Car.prototype.moveRight = function () {
-            this.x += 5;
+        Car.prototype.moveRight = function (distance) {
+            this.x += distance;
             this.carElement.css({
                 left: this.x,
                 top: this.y
             })
         }
-        Car.prototype.moveLeft = function () {
-            this.x -= 5;
+        Car.prototype.moveLeft = function (distance) {
+            this.x -=distance
             this.carElement.css({
                 left: this.x,
                 top: this.y
             })
         }
 
-        Car.prototype.moveUp = function () {
-            this.y -= 5;
+        Car.prototype.moveUp = function (distance) {
+            this.y -= distance;
             this.carElement.css({
                 left: this.x,
                 top: this.y
             })
         }
-        Car.prototype.moveDown = function () {
-            this.y += 5;
+        Car.prototype.moveDown = function (distance) {
+            this.y += distance;
             this.carElement.css({
                 left: this.x,
                 top: this.y
@@ -58,12 +61,17 @@
         }
 
         var tesla = new Car(20, 20);
-        var nissan = new Car(100, 200);
-        var buick = new Car(50, 400)
+        var nissan = new Car(20, 200);
+        var buick = new Car(20, 400)
 
        
 
-        setInterval(tesla.moveRight.bind(nissan), 50)
+        setInterval(function(){
+            tesla.moveRight(Math.random()*10)
+            nissan.moveRight(Math.random()*10)
+            buick.moveRight(Math.random()*10)
+        },30);
+
     </script>
 </body>
 
