@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Canvas</title>
+</head>
+
+<body>
+    <canvas id="canvas" width="500" height="500"></canvas>
+
+    <script>
+        //прямоугольник
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+        ctx.strokeStyle = "DeepPink"
+        ctx.lineWidth = 4;
+        ctx.strokeRect(10, 10, 100, 20)
+        //бирюзовый крест
+        ctx.strokeStyle = "Turquoise";
+        ctx.lineWidth = 4;
+        ctx.beginPath();
+        ctx.moveTo(10, 10);
+        ctx.lineTo(60, 60);
+        ctx.moveTo(60, 10);
+        ctx.lineTo(10, 60);
+        ctx.stroke();
+
+        //человечек
+        ctx.strokeStyle = "yellow"
+        ctx.lineWidth = 10;
+        ctx.beginPath();
+        ctx.moveTo(50, 50);
+        ctx.lineTo(100, 50);
+        ctx.lineTo(100, 100);
+        ctx.lineTo(50, 100);
+        ctx.lineTo(50, 50);
+        ctx.moveTo(100, 50);
+        ctx.stroke();
+//домик
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+        ctx.fillStyle = "Blue";
+        ctx.beginPath();
+        ctx.moveTo(100, 100);
+        ctx.lineTo(100, 60);
+        ctx.lineTo(130, 30);
+        ctx.lineTo(160, 60);
+        ctx.lineTo(160, 100);
+        ctx.lineTo(100, 100);
+        ctx.fill();
+
+    </script>
+</body>
+
+</html>
