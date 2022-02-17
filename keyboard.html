@@ -36,15 +36,11 @@
         Ball.prototype.move = function () {
             this.x += this.xSpeed;
             this.y += this.ySpeed;
-            if (this.x < 0) {
-                this.x = width;
-            } else if (this.x > width) {
-                this.x = 0;
+            if (this.x < 0 || this.x >width) {
+                this.xSpeed = -this.xSpeed
             }
-            if (this.y < 0) {
-                this.y = height;
-            } else if (this.y > height) {
-                this.y = 0;
+            else if (this.y < 0 || this.y> height) {
+                this.ySpeed=-this.ySpeed;
             }
         };
 
