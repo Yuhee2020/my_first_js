@@ -2,15 +2,13 @@
 <html>
 
 <head>
-    <meta charset="UTF-8">
-    <title>Keyboard input</title>
+    <title>Ввод с клавиатуры</title>
 </head>
 
 <body>
     <canvas id="canvas" width="400" height="400"></canvas>
     <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
     <script>
-
         var canvas = document.getElementById("canvas");
         var ctx = canvas.getContext("2d");
         var width = canvas.width;
@@ -26,63 +24,72 @@
             }
         };
 
+        // Конструктор Ball
         var Ball = function () {
             this.x = width / 2;
             this.y = height / 2;
             this.speed = 5;
-            this.xSpeed = 5;
+            this.xSpeed = 1;
             this.ySpeed = 0;
         };
 
+        // Обновляем позицию мяча соответственно его скорости
         Ball.prototype.move = function () {
-            this.x += this.xSpeed;
-            this.y += this.ySpeed;
+            this.x += this.xSpeed * this.speed;
+            this.y += this.ySpeed * this.speed;
+
             if (this.x < 0 || this.x > width) {
-                this.xSpeed = -this.xSpeed
-            }
-            else if (this.y < 0 || this.y > height) {
+                this.xSpeed = -this.xSpeed;
+            } else if (this.y < 0 || this.y > height) {
                 this.ySpeed = -this.ySpeed;
             }
         };
 
+        // Рисуем мяч в его текущей позиции
         Ball.prototype.draw = function () {
             circle(this.x, this.y, 10, true);
-        }
+        };
 
+        // Задаем направление движения по строке с названием действия
         Ball.prototype.setDirection = function (direction) {
-            if (direction === "up") {
+            if (direction === "вверх") {
                 this.xSpeed = 0;
                 this.ySpeed = -5;
-            } else if (direction === "down") {
+            } else if (direction === "вниз") {
                 this.xSpeed = 0;
                 this.ySpeed = 5;
-            } else if (direction === "left") {
+            } else if (direction === "влево") {
                 this.xSpeed = -5;
                 this.ySpeed = 0;
-            } else if (direction === "right") {
+            } else if (direction === "вправо") {
                 this.xSpeed = 5;
                 this.ySpeed = 0;
-            } else if (direction === "stop") {
+            } else if (direction === "стоп") {
                 this.xSpeed = 0;
                 this.ySpeed = 0;
             }
         };
 
+        // Задаем новую скорость мяча
         Ball.prototype.setSpeed = function (newSpeed) {
             if (newSpeed !== undefined) {
                 this.speed = newSpeed;
             }
-        }
-
-        var ball = new Ball();
-        var keyActions = {
-            32: "stop",
-            37: "left",
-            38: "up",
-            39: "right",
-            40: "down"
         };
 
+        // Создаем объект-мяч
+        var ball = new Ball();
+
+        // Объект для перевода кодов клавиш в названия действий
+        var keyActions = {
+            32: "стоп",
+            37: "влево",
+            38: "вверх",
+            39: "вправо",
+            40: "вниз"
+        };
+
+        // Объект для перевода кодов клавиш в скорости
         var speeds = {
             49: 1,
             50: 2,
@@ -95,6 +102,7 @@
             57: 9
         };
 
+        // Обработчик события keydown, будет вызван при каждом нажатии клавиши
         $("body").keydown(function (event) {
             var direction = keyActions[event.keyCode];
             var speed = speeds[event.keyCode];
@@ -102,17 +110,15 @@
             ball.setSpeed(speed);
         });
 
-
+        // Функция анимации, вызывается раз в 30 мс
         setInterval(function () {
             ctx.clearRect(0, 0, width, height);
+
             ball.draw();
             ball.move();
-            ctx.strokeRect(0, 0, width, height)
+
+            ctx.strokeRect(0, 0, width, height);
         }, 30);
-
-
-
-
     </script>
 </body>
 
