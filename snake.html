@@ -10,12 +10,15 @@
     <canvas id="canvas" width="400" height="400"></canvas>
     <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
     <script>
+        //настройка холста
         var canvas = document.getElementById("canvas");
         var ctx = canvas.getContext("2d");
+
+        //Получаем ширину и высоту канваса
         var width = canvas.width;
         var height = canvas.height;
 
-        //разбиваем поле на квадраты
+        //разбиваем поле на квадратыб ширна и высота в ячейках
         var blockSize = 10;
         var widthInBlocks = width / blockSize;
         var heightInBlocks = height / blockSize;
@@ -33,15 +36,15 @@
             ctx.fillRect(width - blockSize, 0, blockSize, height);
         }
 
-        //функция счета
+        //функция счета в верхнем левом углу
         var drawScore = function () {
-
             ctx.fillStyle = "Black"
             ctx.font = "20px Courier";
             ctx.textBaseline = "top";
             ctx.textAlign = "left";
             ctx.fillText("Счет: " + score, blockSize, blockSize);
         };
+
         //конец игры
         var gameOver = function () {
             clearInterval(intervalId);
@@ -52,13 +55,23 @@
             ctx.fillText("Конец игры", width / 2, height / 2);
         };
 
-
+        //рисуем круг
+        var circle = function (x, y, radius, fillCircle) {
+            ctx.beginPath();
+            ctx.arc(x, y, radius, 0, Math.PI * 2, false);
+            if (fillCircle) {
+                ctx.fill();
+            } else {
+                ctx.stroke();
+            }
+        }
+        //задаем конструктор Block
         var Block = function (col, row) {
             this.col = col;
             this.row = row;
-        }
+        };
 
-
+        //рисуем квадрат в позиции ячейки
         Block.prototype.drawSquare = function (color) {
             var x = this.col * blockSize;
             var y = this.raw * blockSize;
@@ -66,10 +79,8 @@
             ctx.fillRect(x, y, blockSize, blockSize);
         };
 
-        var sampleBlock = new Block(3, 4);
-        sampleBlock.drawSquare("LightBlue")
 
-
+        //рисуем круг в позиции ячейки
         Block.prototype.drawCirle = function (color) {
             var centerX = this.col * blockSize + blockSize / 2;
             var centerY = this.row * blockSize + blockSize / 2;
@@ -77,10 +88,11 @@
             circle(centerX, centerY, blockSize / 2, true);
         };
 
+        //проверяем, находится ли эта ячейка в той же позиции, что и ячейка otherBlock
         Block.prototype.equal = function (otherBlock) {
             return this.col === oterBlock.col && this.row === otherBlock.row;
         };
-
+        //задаем конструктор Snake
         var Snake = function () {
             this.segments = [
                 new Block(7, 5),
@@ -90,7 +102,7 @@
             this.direrction = "right";
             this.nextDirection = "right";
         };
-
+//рисуем квадратик для каждого сегмента тела змейки
         Snake.prototype.draw = function () {
             for (var i = 0; i < this.segments.length; i++) {
                 this.segments[i].drawSquare("Blue");
@@ -125,6 +137,62 @@
             }
         };
 
+        Snake.prototype.chekCollision = function (head) {
+            var leftCollision = (head.col === 0);
+            var topCollision = (head.row === 0);
+            var rightCollision = (head.col === widthInBlocks - 1);
+            var bottomCollision = (head.row === heightInBlocks - 1);
+
+            var wallCollision = leftCollision || topCollision || rightCollision || bottomCollision;
+
+            var selfCollision = false;
+            for (var i = 0; i < this.segments.length; i++) {
+                if (head.equal(this.segments[i])) {
+                    selfCollision = true;
+                }
+            }
+            return wallCollision || selfCollision;
+        };
+
+        var directions = {
+            37: "left",
+            38: "up",
+            39: "right",
+            40: "down"
+        };
+        $("body").keydown(function (event) {
+            var newDirection = directions[event.keyCode];
+            if (newDirections !== undefined) {
+                snake.setDirection(newDirection);
+            }
+        });
+        Snake.prototype.setDirection = function (newDirection) {
+            if (this.direction === "up" && newDirection === "down") {
+                return;
+            } else if (this.direction === "right" && newDirection === "left") {
+                return;
+            } else if (this.direction === "down" && newDirection === "up") {
+                return;
+            } else if (this.direction === "left" && newDirection === "right") {
+                return;
+            }
+            this.nextDirection = newDirection;
+        };
+
+        var Apple = function () {
+            this.position = newBlock(10, 10);
+        };
+
+        Apple.prototype.draw = function () {
+            this.position.drawCircle("LimeGreen");
+        };
+
+
+        Apple.prototype.move = function () {
+            var randomCol = Math.floor(Math.random() * (widthInBlocks - 2)) + 1;
+            var randomRow = Math.floor(Math.random() * (heightInBlocks - 2)) + 1;
+            this.position = new Block(randomCol, randomRow);
+        };
 
     </script>
 </body>
