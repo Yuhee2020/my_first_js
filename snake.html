@@ -102,13 +102,13 @@
             this.direrction = "right";
             this.nextDirection = "right";
         };
-//рисуем квадратик для каждого сегмента тела змейки
+        //рисуем квадратик для каждого сегмента тела змейки
         Snake.prototype.draw = function () {
             for (var i = 0; i < this.segments.length; i++) {
                 this.segments[i].drawSquare("Blue");
             }
         };
-
+        //создаем новую голову и добавляем ее к началу змейки, чтобы передвинуть змейку в текущем направлении
         Snake.prototype.move = function () {
             var head = this.segments[0];
             var newHead;
@@ -136,7 +136,7 @@
                 this.segments.pop();
             }
         };
-
+        //проверяем, не столкнулась ли змейка со стеной или собственным телом
         Snake.prototype.chekCollision = function (head) {
             var leftCollision = (head.col === 0);
             var topCollision = (head.row === 0);
@@ -154,18 +154,9 @@
             return wallCollision || selfCollision;
         };
 
-        var directions = {
-            37: "left",
-            38: "up",
-            39: "right",
-            40: "down"
-        };
-        $("body").keydown(function (event) {
-            var newDirection = directions[event.keyCode];
-            if (newDirections !== undefined) {
-                snake.setDirection(newDirection);
-            }
-        });
+
+
+        //задаем следующее направление движения змейки на основе нажатой клавиши
         Snake.prototype.setDirection = function (newDirection) {
             if (this.direction === "up" && newDirection === "down") {
                 return;
@@ -178,21 +169,51 @@
             }
             this.nextDirection = newDirection;
         };
-
+        //задаем конструктор Apple
         var Apple = function () {
             this.position = newBlock(10, 10);
         };
-
+        // Рисуем кружок в позиции яблока
         Apple.prototype.draw = function () {
             this.position.drawCircle("LimeGreen");
         };
 
-
+        //перемещаем яблоко в случайную позицию
         Apple.prototype.move = function () {
             var randomCol = Math.floor(Math.random() * (widthInBlocks - 2)) + 1;
             var randomRow = Math.floor(Math.random() * (heightInBlocks - 2)) + 1;
             this.position = new Block(randomCol, randomRow);
         };
+
+        //создаем змейку и яблоко
+
+        var snake = new Snake();
+        var apple = new Apple();
+
+        //запускаем функцию анимации через setInterval
+        var intervalID = setInterval(function () {
+            ctx.clearRect(0, 0, width, height);
+            drawScore();
+            snake.move();
+            snake.draw();
+            apple.draw();
+            drawBorder();
+        }, 100)
+
+        // Преобразуем коды клавиш в направления
+        var directions = {
+            37: "left",
+            38: "up",
+            39: "right",
+            40: "down"
+        };
+        // Задаем обработчик события keydown (клавиши-стрелки)
+        $("body").keydown(function (event) {
+            var newDirection = directions[event.keyCode];
+            if (newDirections !== undefined) {
+                snake.setDirection(newDirection);
+            }
+        });
 
     </script>
 </body>
