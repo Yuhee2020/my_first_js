@@ -19,12 +19,13 @@
         var height = canvas.height;
 
         //разбиваем поле на квадратыб ширна и высота в ячейках
-        var blockSize = 10;
+        var blockSize = 15;
         var widthInBlocks = width / blockSize;
         var heightInBlocks = height / blockSize;
 
-        // счет
+        // счет, скорость
         var score = 0;
+        var speed = 300
 
         //рисуем рамку
 
@@ -90,7 +91,7 @@
         };
 
         //проверяем, находится ли эта ячейка в той же позиции, что и ячейка otherBlock
-        Block.prototype.equal =function (otherBlock) {
+        Block.prototype.equal = function (otherBlock) {
             return this.col === otherBlock.col && this.row === otherBlock.row;
         };
         //задаем конструктор Snake
@@ -105,15 +106,24 @@
         };
         //рисуем квадратик для каждого сегмента тела змейки
         Snake.prototype.draw = function () {
-            for (var i = 0; i < this.segments.length; i++) {
-                this.segments[i].drawSquare("Blue");
+            this.segments[0].drawSquare("LimeGreen")
+            var isEvenSegment = false;
+
+            for (var i = 1; i < this.segments.length; i++) {
+                if (isEvenSegment) {
+                    this.segments[i].drawSquare("Blue")
+                } else {
+                    this.segments[i].drawSquare("Yellow");
+                }
+                isEvenSegment = !isEvenSegment;
             }
         };
+       
         //создаем новую голову и добавляем ее к началу змейки, чтобы передвинуть змейку в текущем направлении
         Snake.prototype.move = function () {
             var head = this.segments[0];
             var newHead;
-
+            
             this.direction = this.nextDirection;
 
             if (this.direction === "right") {
@@ -133,6 +143,7 @@
             if (newHead.equal(apple.position)) {
                 score++;
                 apple.move();
+                
             } else {
                 this.segments.pop();
             }
@@ -191,16 +202,19 @@
 
         var snake = new Snake();
         var apple = new Apple();
-
+       
+       
         //запускаем функцию анимации через setInterval
+
+     
         var intervalId = setInterval(function () {
             ctx.clearRect(0, 0, width, height);
             drawScore();
             snake.move();
-            snake.draw();
+            snake.draw(); 
             apple.draw();
             drawBorder();
-        }, 100)
+        }, speed)
 
         // Преобразуем коды клавиш в направления
         var directions = {
