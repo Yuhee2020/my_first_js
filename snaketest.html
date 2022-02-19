@@ -59,10 +59,22 @@
             drawBorder()
         }, 1000)
 
-        
+        var Block = function (col, row) {
+            this.col = col;
+            this.row = row;
+        }
+        var sampleBlock = new Block(5, 5);
 
 
+        Block.prototype.drawSquare = function (color) {
+            var x = this.col * blockSize;
+            var y = this.raw * blockSize;
+            ctx.fillStyle = color;
+            ctx.fillRect(x, y, blockSize, blockSize);
+        };
 
+        var sampleBlock = new Block(3, 4);
+        sampleBlock.drawSquare("LightBlue")
 
     </script>
 </body>
