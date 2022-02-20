@@ -1,7 +1,7 @@
-const room = {
-    color: "blue",
-    ligth: true,
+const myCity = {
+    city: "New york",
+    cityGreeting: function(){
+        console.log("Greetings!!")
+    } 
 }
-room.color= "red"
-room.windows = 1
-console.log(room)
+myCity.cityGreeting()
