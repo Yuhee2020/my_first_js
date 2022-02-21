@@ -1,7 +1,5 @@
-function myFn(a,b){
-    let c
-    a=a+1
-    c = a+b
-    return c
+function printMyName(){
+    console.log("dimas")
 }
-console.log(myFn(10,5))
+
+setTimeout(printMyName, 1000)
