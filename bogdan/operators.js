@@ -15,3 +15,10 @@ const button = {
 }
 
 console.table(button)
+
+const name = "Dima"
+const city = "Brest"
+console.log(`my name is ${name}, i am from ${city}`)
+
+
+setTimeout(()=>{console.log("wasia")}, 3000)
