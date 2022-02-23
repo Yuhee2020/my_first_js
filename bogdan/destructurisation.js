@@ -4,5 +4,12 @@
      loh : true,
  }
 
-const { name, age, loh} = userProfile
- console.log(age)
+  
+
+const userInfo = ({name, age})=> {
+    if(!age){
+        return "User ${name} has no comments"
+    }
+    return "User ${name} has ${age} comments"
+}
+console.log(userInfo(userProfile))
