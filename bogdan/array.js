@@ -10,6 +10,6 @@ myArray2.forEach(function(el){
 
 myArray.forEach(i => console.log(i*3))
 
-
+  
 const newArray = myArray.map(el=> el*3)
 console.log(newArray) 

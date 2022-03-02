@@ -22,3 +22,5 @@ console.log(`my name is ${name}, i am from ${city}`)
 
 
 setTimeout(()=>{console.log("wasia")}, 3000)
+
+Date
