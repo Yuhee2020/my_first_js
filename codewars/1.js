@@ -18,3 +18,14 @@ function even_or_odd(number) {
       return "Odd";
     }
   } // четноеб нечетное
+
+
+  function makeNegative(num) {
+    if (num>0){return num*-1}
+      else return num
+    }
+    //из положительного, в отрицательное
+
+    function opposite(number) {
+        return -number //your code here
+       }
