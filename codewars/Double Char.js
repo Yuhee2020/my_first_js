@@ -4,3 +4,5 @@ function doubleChar(str) {
      newStr += str[i] + str[i] 
    } return newStr
   }
+
+  const doubleChar = (str) => str.split("").map(c => c + c).join("")// тоже самое
