@@ -27,5 +27,6 @@ function even_or_odd(number) {
     //из положительного, в отрицательное
 
     function opposite(number) {
-        return -number //your code here
+        return -number 
+        
        }
