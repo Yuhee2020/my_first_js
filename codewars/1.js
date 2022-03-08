@@ -39,3 +39,8 @@ function maps(x) {
 function invert(array) {
   return array.map(el=> -el);
 }// инвертизация массива
+
+function check(a, x) {
+  return a.includes(x)
+}//проверяет содержит ли массив a, значение x
+
