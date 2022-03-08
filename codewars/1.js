@@ -34,3 +34,8 @@ function opposite(number) {
 function maps(x) {
   return x.map(el => el * 2)
 }// перебирает массив и умножает значения на 2
+
+
+function invert(array) {
+  return array.map(el=> -el);
+}// инвертизация массива
