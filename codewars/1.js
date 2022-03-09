@@ -49,3 +49,7 @@ function check(a, x) {
   return a.includes(x) 
   }
 
+  
+  function hero(bullets, dragons){
+    return bullets/dragons>=2
+    }// тру или фолс
