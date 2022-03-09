@@ -44,3 +44,8 @@ function check(a, x) {
   return a.includes(x)
 }//проверяет содержит ли массив a, значение x
 
+
+function check(a, x) {
+  return a.includes(x) 
+  }
+
