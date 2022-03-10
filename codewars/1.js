@@ -37,7 +37,7 @@ function maps(x) {
 
 
 function invert(array) {
-  return array.map(el=> -el);
+  return array.map(el => -el);
 }// инвертизация массива
 
 function check(a, x) {
@@ -46,16 +46,21 @@ function check(a, x) {
 
 
 function check(a, x) {
-  return a.includes(x) 
-  }
-
-  
-  function hero(bullets, dragons){
-    return bullets/dragons>=2
-    }// тру или фолс
+  return a.includes(x)
+}
 
 
-    function bonusTime(salary, bonus) {
-      if(bonus){return "\u00A3"+salary*10
-               }return "\u00A3"+salary
-      }
+function hero(bullets, dragons) {
+  return bullets / dragons >= 2
+}// тру или фолс
+
+
+function bonusTime(salary, bonus) {
+  if (bonus) {
+    return "\u00A3" + salary * 10
+  } return "\u00A3" + salary
+}
+
+function makeUpperCase(str) {
+  return str.toUpperCase() // upperCase
+}
