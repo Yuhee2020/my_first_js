@@ -53,3 +53,9 @@ function check(a, x) {
   function hero(bullets, dragons){
     return bullets/dragons>=2
     }// тру или фолс
+
+
+    function bonusTime(salary, bonus) {
+      if(bonus){return "\u00A3"+salary*10
+               }return "\u00A3"+salary
+      }
