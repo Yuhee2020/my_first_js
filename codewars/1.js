@@ -70,3 +70,12 @@ function simpleMultiplication(number) {
   if( number%2==0){return number*8}
     else return number*9
   }
+
+  function getAge(inputString){
+    return Number(inputString.slice(0,1))
+  // return the girl's correct age as an integer. Happy coding :) 
+  }
+
+
+
+
